@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Your FitBuddy Plan{% endblock %}
+{% block content %}
+<div style="width:100%;max-width:760px">
+  <div class="card">
+    <h1>Hi {{ username }}!</h1>
+    {% if message %}<div class="msg">{{ message }}</div>{% endif %}
+    <div class="grid stats">
+      <div><span>User ID</span>{{ user_id }}</div><div><span>Age</span>{{ age }}</div>
+      <div><span>Weight</span>{{ weight }} kg</div><div><span>Goal</span>{{ goal }}</div>
+      <div><span>Intensity</span>{{ intensity }}</div>
+    </div>
+  </div>
+  <div class="card"><h2>Your 7-Day Workout Plan</h2><pre>{{ workout_plan }}</pre></div>
+  <div class="card"><h2>Nutrition / Recovery Tip</h2><div class="tip">{{ nutrition_tip }}</div></div>
+  <div class="card">
+    <h2>Refine Your Plan</h2>
+    <form action="/submit-feedback" method="post">
+      <label for="user_id">User ID</label><input id="user_id" name="user_id" value="{{ user_id }}" required>
+      <label for="feedback">Feedback</label>
+      <textarea id="feedback" name="feedback" rows="3" placeholder="e.g. More focus on cardio, include more rest days" required></textarea>
+      <button type="submit">Update Plan</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
